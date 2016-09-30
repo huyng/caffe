@@ -1,11 +1,13 @@
 from setuptools import setup
 from setuptools.extension import Extension
+import numpy as np
 
 extensions = [
     Extension(
         "strada/_caffe_wrapper.cpp",
         libraries=["caffe"],
         library_dirs=['../build/lib'],
+        include_dirs=['../include', np.get_include()],
     )
 ]
 
