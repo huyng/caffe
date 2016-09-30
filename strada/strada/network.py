@@ -9,6 +9,7 @@ try:
 except:
     from itertools import zip_longest as izip_longest
     
+from _caffe import Net
 import numpy as np
 import six
 

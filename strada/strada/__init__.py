@@ -1,5 +1,5 @@
 from .network import Net
-from ._caffe_wrapper import (
+from _caffe import (
     Layer,
     SGDSolver,
     NesterovSolver,

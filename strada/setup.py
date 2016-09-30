@@ -1,13 +1,14 @@
 from setuptools import setup
-from setuptools.extension import Extension
+from distutils.extension import Extension
 import numpy as np
 
 extensions = [
     Extension(
-        "strada/_caffe_wrapper.cpp",
-        libraries=["caffe"],
-        library_dirs=['../build/lib'],
-        include_dirs=['../include', np.get_include()],
+	"_caffe",
+        sources=["strada/_caffe.cpp"],
+        libraries=["caffe", "boost_python", "cublas", "cudart"],
+        library_dirs=['../build/lib', '/usr/local/cuda/lib64'],
+        include_dirs=['../include', '../build/src', np.get_include(), '/usr/local/cuda/include'],
     )
 ]
 
@@ -17,7 +18,7 @@ setup(
     description="Python bindings for caffe, named after the cafe in berkeley",
     author_email='',
     version="1.0",
-    packages=['strada'],
+    packages=['strada', 'strada.proto'],
     install_requires=[
         "Cython>=0.19.2",
         "numpy>=1.7.1",
@@ -37,9 +38,6 @@ setup(
         "Pillow>=2.3.0",
         "six>=1.1.0",
     ],
-    dependency_links=[
-        'http://edge.artifactory.yahoo.com:8000/artifactory/pypi/vision.ioutils/',
-        'http://edge.artifactory.yahoo.com:8000/artifactory/pypi/vision.face/'
-    ],
     zip_safe=False,
+    ext_modules=extensions,
 )
