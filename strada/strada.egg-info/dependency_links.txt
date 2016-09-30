@@ -1,2 +1,0 @@
-http://edge.artifactory.yahoo.com:8000/artifactory/pypi/vision.ioutils/
-http://edge.artifactory.yahoo.com:8000/artifactory/pypi/vision.face/
